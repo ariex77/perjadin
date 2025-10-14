@@ -25,7 +25,7 @@ export default function RolePage({ roles, search }: { roles: RoleResponse; searc
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Daftar Role" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Kelola Role" subtitle="Daftar role di sistem E-Lapor Dinas" />
+                <PageHeader title="Kelola Role" subtitle="Daftar role di sistem E-Perjadin" />
                 <DataTable columns={columns} data={data as Role[]} pagination={meta} search={search} />
             </div>
         </AppLayout>

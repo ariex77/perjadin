@@ -38,7 +38,7 @@ export default function EmployeePage({
             <Head title="Kelola Pegawai" />
             <AdminOrSuperadmin fallback={<AccessDenied />}>
                 <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                    <PageHeader title="Kelola Pegawai" subtitle="Daftar pegawai di E-Lapor Dinas" />
+                    <PageHeader title="Kelola Pegawai" subtitle="Daftar pegawai di E-Perjadin" />
                     <DataTable 
                         columns={columns} 
                         data={data as Employee[]} 

@@ -46,7 +46,7 @@ class LoginRequest extends FormRequest
         ]);
 
         $credentials = [
-            'username' => $this->string('identifier')->toString(),
+            'nip' => $this->string('identifier')->toString(),
             'password' => $this->string('password')->toString(),
         ];
 

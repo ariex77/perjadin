@@ -1,4 +1,4 @@
-# Getting Started with the E-Lapor Dinas Barantin Application
+# Getting Started with the E-Perjadin Application
 
 Follow these steps to set up the Emter API application on your local development environment.
 
@@ -17,7 +17,7 @@ Before you begin, make sure you have the following installed on your system:
 Start by cloning the repository from GitHub:
 
 ```bash
-git clone https://github.com/rachelardanaputraginting/e-perjadin-bki.git
+git clone https://github.com/ariex77/e-perjadin.git
 ```
 
 ## Install PHP Dependencies
@@ -25,8 +25,8 @@ git clone https://github.com/rachelardanaputraginting/e-perjadin-bki.git
 Navigate to the project directory and install the PHP dependencies:
 
 ```bash
-cd e-perjadin-bki/
-composer install
+cd e-perjadin/
+composer update
 ```
 
 ## Environment Setup
@@ -45,7 +45,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=e_perjadin
 DB_USERNAME=root
-DB_PASSWORD=
+DB_PASSWORD=root
 ```
 
 Make sure to adjust the `DB_HOST`, `DB_PORT`, `DB_USERNAME`, and `DB_PASSWORD` according to your local MySQL server configuration.

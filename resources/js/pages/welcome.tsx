@@ -10,7 +10,7 @@ export default function Welcome() {
 
     return (
         <>
-            <Head title="Welcome - E-Perjadin" />
+            <Head title="Welcome" />
             <div className="flex min-h-screen flex-col items-center bg-background p-12">
                 <div className="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow">
                     <main className="flex w-full flex-col-reverse space-y-6 lg:max-w-6xl lg:flex-row lg:gap-12">
@@ -18,13 +18,13 @@ export default function Welcome() {
                             <div className="mb-6">
                                 <Badge variant="secondary" className="mb-3">
                                     <Shield className="h-4 w-4" />
-                                    Sistem E-Lapor Dinas
+                                    Sistem E-Perjadin
                                 </Badge>
                                 <CardTitle className="text-3xl font-bold mb-3">
-                                    Selamat Datang di E-Lapor Dinas
+                                    Selamat Datang di E-Perjadin 
                                 </CardTitle>
                                 <CardDescription className="text-lg leading-relaxed">
-                                    Platform Digital Untuk Dokumentasi Perjalanan Dinas Pusat Data dan Sistem Informasi KHIT
+                                    Platform Digital Untuk Dokumentasi Perjalanan Dinas Kesehatan Kabupaten Kampar
                                     <br />
                                     <span className="text-sm text-muted-foreground mt-2 block">
                                         Kelola perjalanan dinas dengan efisien, akuntabel, dan terintegrasi.
@@ -95,14 +95,10 @@ export default function Welcome() {
                         <Card className="hidden md:flex items-center justify-center mb-8 w-full md:mb-0 md:w-1/2">
 
                             <CardContent className="flex flex-col gap-4 items-center justify-center">
-                                <img
-                                    src="/logo.png"
-                                    alt="Badan Karantina Indonesia"
-                                    className="w-64 object-cover"
-                                />
+                                <img src="/logo.png" alt="Sekretariat" className="w-64 object-cover" />
                             </CardContent>
                             <CardFooter>
-                                <p className='text-xl'>Pusat Data dan Sistem Informasi KHIT</p>
+                                <p className='text-xl'>Dinas Kesehatan Kabupaten Kampar</p>
                             </CardFooter>
                         </Card>
                     </main>

@@ -155,7 +155,7 @@ export default function EditEmployee({ user, workUnits, roles }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Edit Pegawai" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Edit pegawai" subtitle="Perbarui data pegawai untuk E-Lapor Dinas" />
+                <PageHeader title="Edit pegawai" subtitle="Perbarui data pegawai untuk E-Perjadin" />
                 <form onSubmit={onSubmit}>
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                         {/* Kiri: Kategori Pegawai & Foto */}

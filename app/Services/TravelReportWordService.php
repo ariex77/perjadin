@@ -159,13 +159,13 @@ class TravelReportWordService
 
         // Kanan: blok teks header
         $textCell = $table->addCell(8000, ['alignment' => Jc::CENTER, 'valign' => 'top']);
-        $textCell->addText('BADAN KARANTINA INDONESIA', 'HeaderBig', ['alignment' => Jc::CENTER]);
-        $textCell->addText('PUSAT DATA DAN SISTEM INFORMASI KARANTINA', 'HeaderMid', ['alignment' => Jc::CENTER]);
-        $textCell->addText('HEWAN, IKAN DAN TUMBUHAN', 'HeaderMid', ['alignment' => Jc::CENTER]);
+        $textCell->addText('SEKRETARIAT', 'HeaderBig', ['alignment' => Jc::CENTER]);
+        $textCell->addText('DINAS KESEHATAN', 'HeaderMid', ['alignment' => Jc::CENTER]);
+        $textCell->addText('KABUPATEN KAMPAR', 'HeaderMid', ['alignment' => Jc::CENTER]);
 
         $textCell->addText(
-            'GEDUNG SOEDJONO DJOENED POESPONEGORO / GEDUNG BPPT 1, JL. M. H. THAMRIN NO.8 LANTAI 9,' .
-                ' KEBON SIRIH, KEC. MENTENG, KOTA JAKARTA PUSAT, DAERAH KHUSUS IBUKOTA JAKARTA 10340',
+            'JL Dr. A.Rahman Saleh No.01,' .
+                ' Bangkinang',
             'HeaderSmall',
             ['alignment' => Jc::CENTER]
         );

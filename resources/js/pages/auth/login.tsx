@@ -36,23 +36,23 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Masuk" description="Akses Aplikasi E-Lapor Dinas menggunakan Username dan kata sandi Anda">
+        <AuthLayout title="Masuk" description="Akses Aplikasi E-Perjadin menggunakan NIP dan kata sandi Anda">
             <Head title="Masuk" />
 
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
-                        <Label htmlFor="identifier">Username</Label>
+                        <Label htmlFor="identifier">NIP</Label>
                         <Input
                             id="identifier"
                             type="text"
                             required
                             autoFocus
                             tabIndex={1}
-                            autoComplete="username"
+                            autoComplete="off"
                             value={data.identifier}
                             onChange={(e) => setData('identifier', e.target.value)}
-                            placeholder="Masukkan Username"
+                            placeholder="Masukkan NIP"
                         />
                         <InputError message={errors.identifier} />
                     </div>

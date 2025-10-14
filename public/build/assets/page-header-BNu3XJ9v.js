@@ -1,0 +1,1 @@
+import{j as e}from"./app-D1xV2MNQ.js";import{a as r}from"./button-CVReGMi9.js";function d({title:s,subtitle:t,className:m}){return e.jsxs("div",{className:r("",m),children:[e.jsx("h2",{className:"text-lg md:text-xl font-medium",children:s}),t&&e.jsx("p",{className:"text-xs md:text-sm text-muted-foreground",children:t})]})}export{d as P};

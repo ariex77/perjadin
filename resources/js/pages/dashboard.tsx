@@ -319,7 +319,7 @@ export default function Dashboard(props: DashboardProps) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard - E-Perjadin" />
+            <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 {/* Statistics based on user role */}
                 {isEmployee ? (
