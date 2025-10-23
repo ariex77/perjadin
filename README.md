@@ -1,4 +1,4 @@
-# Getting Started with the E-Perjadin Application
+# Getting Started with the Perjadin Application
 
 Follow these steps to set up the Emter API application on your local development environment.
 
@@ -17,7 +17,7 @@ Before you begin, make sure you have the following installed on your system:
 Start by cloning the repository from GitHub:
 
 ```bash
-git clone https://github.com/ariex77/e-perjadin.git
+git clone https://github.com/ariex77/perjadin.git
 ```
 
 ## Install PHP Dependencies
@@ -25,7 +25,7 @@ git clone https://github.com/ariex77/e-perjadin.git
 Navigate to the project directory and install the PHP dependencies:
 
 ```bash
-cd e-perjadin/
+cd perjadin/
 composer update
 ```
 
@@ -43,7 +43,7 @@ Edit the `.env` file and update the database settings:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=e_perjadin
+DB_DATABASE=perjadin
 DB_USERNAME=root
 DB_PASSWORD=root
 ```
@@ -104,3 +104,4 @@ Navigate to this URL in your web browser to view the application.
 ```
 
 ```
+# perjadin
