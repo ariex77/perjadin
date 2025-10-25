@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Report;
+use Illuminate\Http\Request;
 
 use App\Models\InCityReport;
 use App\Models\OutCityReport;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Reports\InCityReportController;
 use App\Http\Controllers\Reports\OutCityReportController;
 use App\Http\Controllers\Reports\TravelReportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Route Model Binding
 Route::model('user', User::class);
@@ -102,6 +104,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Route::post('administrations/bulk-delete', [AdministrationController::class, 'bulkDelete'])->name('administrations.bulk-delete');
     });
 });
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
