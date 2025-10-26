@@ -25,7 +25,7 @@ export default function FullboardPricePage({ FullboardPrices, search }: { Fullbo
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Kelola Harga Uang Harian" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Kelola Harga Uang Harian" subtitle="Daftar harga uang harian E-Perjadin" />
+                <PageHeader title="Kelola Harga Uang Harian" subtitle="Daftar harga uang harian Perjadin" />
                 <DataTable columns={columns} data={data as FullboardPrice[]} pagination={meta} search={search} />
             </div>
         </AppLayout>

@@ -36,7 +36,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Masuk" description="Akses Aplikasi E-Perjadin menggunakan NIP dan kata sandi Anda">
+        <AuthLayout title="Masuk" description="Akses Aplikasi Perjadin menggunakan NIP dan kata sandi Anda">
             <Head title="Masuk" />
 
             <form className="flex flex-col gap-6" onSubmit={submit}>

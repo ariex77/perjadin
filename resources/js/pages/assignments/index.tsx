@@ -349,7 +349,7 @@ export default function AssignmentsIndex({
 
                                             <div className="flex items-center gap-2 text-sm">
                                                 <Edit className="h-4 w-4" />
-                                                {assignment.creator.name}
+                                                {assignment.creator?.name ?? 'Pembuat tidak tersedia'}
                                             </div>
                                         </CardContent>
 

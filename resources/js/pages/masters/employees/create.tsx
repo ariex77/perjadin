@@ -112,7 +112,7 @@ export default function EmployeeForm({ workUnits, roles }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Tambah Pegawai" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Tambah pegawai" subtitle="Tambahkan pegawai baru untuk E-Perjadin" />
+                <PageHeader title="Tambah pegawai" subtitle="Tambahkan pegawai baru untuk Perjadin" />
                 <form onSubmit={onSubmit}>
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                         {/* Kiri: Kategori Pegawai & Foto */}

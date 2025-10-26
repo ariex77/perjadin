@@ -25,7 +25,7 @@ export default function WorkUnitPage({ workUnits, search }: { workUnits: WorkUni
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Kelola Unit Kerja" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Kelola Unit Kerja" subtitle="Daftar unit kerja E-Perjadin" />
+                <PageHeader title="Kelola Unit Kerja" subtitle="Daftar unit kerja Perjadin" />
                 <DataTable columns={columns} data={data as WorkUnit[]} pagination={meta} search={search} />
             </div>
         </AppLayout>

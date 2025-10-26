@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { StatCard } from '@/components/ui/stat-card';
 import AppLayout from '@/layouts/app-layout';
 import { getTravelTypeLabel } from '@/lib/utils';
-import { type BreadcrumbItem, type DashboardProps } from '@/types';
+import { type BreadcrumbItem } from '@/types';
 import type { AssignmentReport, Assignment as AssignmentType, AssignmentUser } from '@/types/assignments/assignment';
 import { Head } from '@inertiajs/react';
 import { Calendar, CheckCircle, Clock, FileText, Target, TrendingUp, XCircle } from 'lucide-react';
@@ -17,7 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Dashboard(props: DashboardProps) {
+export default function Dashboard(props: any) {
     const {
         // Core statistics
         totalAssignments,
@@ -478,11 +478,10 @@ export default function Dashboard(props: DashboardProps) {
                                         <div key={report.id} className="rounded-lg border p-3">
                                             <div className="space-y-1">
                                                 <CardTitle className="line-clamp-2 overflow-hidden font-medium break-words whitespace-normal">
-                                                    {report.assignment?.purpose || `Laporan #${report.id}`}
+                                                    {`Laporan #${report.id}`}
                                                 </CardTitle>
                                                 <CardDescription>
-                                                    {report.user?.name || 'User'} • {getTravelTypeLabel(report.travel_type)} •{' '}
-                                                    {report.assignment?.destination}
+                                                    {getTravelTypeLabel(report.travel_type || '')}
                                                 </CardDescription>
                                                 <p className="text-xs text-muted-foreground">{formatDate(report.created_at)}</p>
                                             </div>

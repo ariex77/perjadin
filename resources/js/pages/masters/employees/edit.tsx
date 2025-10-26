@@ -155,7 +155,7 @@ export default function EditEmployee({ user, workUnits, roles }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Edit Pegawai" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <PageHeader title="Edit pegawai" subtitle="Perbarui data pegawai untuk E-Perjadin" />
+                <PageHeader title="Edit pegawai" subtitle="Perbarui data pegawai untuk Perjadin" />
                 <form onSubmit={onSubmit}>
                     <div className="flex w-full flex-col gap-4 md:flex-row">
                         {/* Kiri: Kategori Pegawai & Foto */}
@@ -241,7 +241,7 @@ export default function EditEmployee({ user, workUnits, roles }: Props) {
                                             { value: 'Male', label: 'Laki-laki' },
                                             { value: 'Female', label: 'Perempuan' },
                                         ]}
-                                        value={data.gender}
+                                        value={data.gender ?? undefined}
                                         onValueChange={(value) => setData('gender', value)}
                                         placeholder="Pilih jenis kelamin"
                                         searchPlaceholder="Cari jenis kelamin..."
@@ -269,7 +269,7 @@ export default function EditEmployee({ user, workUnits, roles }: Props) {
                                     </Label>
                                     <Multiselect
                                         value={data.roles}
-                                        onChange={(value) => setData('roles', value)}
+                                        onChange={(value) => setData('roles', value.map(String))}
                                         options={roles.map((role) => ({
                                             value: role.name || '',
                                             label: role.name === 'employee' ? 'Pegawai' : role.name === 'leader' ? 'Pimpinan' : role.name || '',

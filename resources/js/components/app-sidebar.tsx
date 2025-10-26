@@ -1,6 +1,6 @@
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { Building, CreditCard, FileText, LayoutGrid, Shield, Target, Users } from 'lucide-react';
@@ -10,6 +10,10 @@ import { NavSetting } from './nav-setting';
 import { NavReport } from './nav-report';
 import { AdminOrSuperadmin, SuperadminOnly } from './role-guard';
 import { NavSecondary } from './nav-secondary';
+import { Slot } from '@radix-ui/react-slot';
+import { forwardRef } from 'react';
+
+import { SidebarMenuButton } from '@/components/ui/sidebar';
 
 const mainNavItems: NavItem[] = [
     {
@@ -86,17 +90,16 @@ export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard" prefetch>
-                                <AppLogo />
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+            <SidebarMenu>
+                <SidebarMenuItem>
+                <SidebarMenuButton size="lg" asChild>
+                    <Link href="/dashboard" prefetch>
+                    <AppLogo />
+                    </Link>
+                </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
             </SidebarHeader>
-
             <SidebarContent>
                 {/* Dashboard - visible to all users */}
                 <NavMain items={mainNavItems} />

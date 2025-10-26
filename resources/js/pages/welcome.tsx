@@ -18,10 +18,10 @@ export default function Welcome() {
                             <div className="mb-6">
                                 <Badge variant="secondary" className="mb-3">
                                     <Shield className="h-4 w-4" />
-                                    Sistem E-Perjadin
+                                    Aplikasi Perjadin
                                 </Badge>
                                 <CardTitle className="text-3xl font-bold mb-3">
-                                    Selamat Datang di E-Perjadin 
+                                    Selamat Datang
                                 </CardTitle>
                                 <CardDescription className="text-lg leading-relaxed">
                                     Platform Digital Untuk Dokumentasi Perjalanan Dinas Kesehatan Kabupaten Kampar
