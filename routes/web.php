@@ -44,8 +44,6 @@ Route::get('/test-debug', function () {
     dd('Debug route working!');
 });
 
-
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
@@ -76,13 +74,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('{report}/download-expense', [ReportController::class, 'downloadExpenseReport'])->name('download-expense');
         Route::get('{report}/download-travel', [ReportController::class, 'downloadTravelReport'])->name('download-travel');
 
-        
-
         Route::resource('{report}/in-city-reports', InCityReportController::class)->parameters(['in-city-reports' => 'inCityReport'])->except(['index', 'show', 'create', 'edit', 'destroy']);   
         Route::resource('{report}/out-city-reports', OutCityReportController::class)->parameters(['out-city-reports' => 'outCityReport'])->except(['index', 'show', 'create', 'edit', 'destroy']);   
         Route::resource('{report}/travel-reports', TravelReportController::class)->parameters(['travel-reports' => 'travelReport'])->except(['index', 'show', 'create', 'edit', 'destroy']);   
-        
-
     });
 
     Route::prefix('masters')->name('masters.')->middleware('role:superadmin|admin')->group(function () {

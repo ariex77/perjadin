@@ -30,7 +30,7 @@ class TravelReportWordService
 
         // Doc props
         $properties = $phpWord->getDocInfo();
-        $properties->setCreator('E-Perjadin System');
+        $properties->setCreator('Perjadin System');
         $properties->setTitle('Laporan Perjadin');
         $properties->setSubject('Laporan Hasil Kegiatan Perjalanan Dinas');
 
@@ -109,15 +109,15 @@ class TravelReportWordService
 
     private function addStyles(PhpWord $phpWord): void
     {
-        // Default isi = 11
+        // Default isi = 12
         $phpWord->setDefaultFontName('Arial');
-        $phpWord->setDefaultFontSize(11);
+        $phpWord->setDefaultFontSize(12);
 
         // Hemat spasi
         $phpWord->setDefaultParagraphStyle([
             'spaceAfter'   => 0,
             'spaceBefore'  => 0,
-            'lineHeight'   => 1.15,
+            'lineHeight'   => 1.0,
             'widowControl' => true,
         ]);
 
@@ -135,47 +135,47 @@ class TravelReportWordService
         $table = $section->addTable([
             'borderSize'  => 0,
             'borderColor' => 'FFFFFF',
-            'cellMargin'  => 0,
-            'alignment'   => Jc::START, // left align table
+            'cellMargin'  => 80,
+            'alignment'   => Jc::CENTER,
         ]);
 
         $table->addRow();
 
-        // Kiri: logo, full height, left aligned
-        $logoCell = $table->addCell(1000, ['alignment' => Jc::START, 'valign' => 'top']);
-        $logoPath = public_path('logo.png');
+        // Kiri: logo
+        $logoCell = $table->addCell(1000, ['valign' => 'center']);
+        $logoPath = public_path('logodinkes.jpg');
         if (is_string($logoPath) && file_exists($logoPath)) {
             $logoCell->addImage($logoPath, [
-                'width'         => 90,
-                'height'        => 90,
-                'alignment'     => Jc::START,
-                'wrappingStyle' => 'inline',
-                'marginTop'     => 0,
-                'marginLeft'    => 0,
+                'width'     => 80,
+                'height'    => 80,
+                'alignment' => Jc::CENTER,
             ]);
-        } else {
-            $logoCell->addText('');
         }
 
-        // Kanan: blok teks header
-        $textCell = $table->addCell(8000, ['alignment' => Jc::CENTER, 'valign' => 'top']);
-        $textCell->addText('SEKRETARIAT', 'HeaderBig', ['alignment' => Jc::CENTER]);
-        $textCell->addText('DINAS KESEHATAN', 'HeaderMid', ['alignment' => Jc::CENTER]);
-        $textCell->addText('KABUPATEN KAMPAR', 'HeaderMid', ['alignment' => Jc::CENTER]);
+        // Kanan: teks header
+        $textCell = $table->addCell(8000, ['valign' => 'top']);
+        $textRun  = $textCell->addTextRun(['alignment' => Jc::CENTER]);
 
-        $textCell->addText(
-            'JL Dr. A.Rahman Saleh No.01,' .
-                ' Bangkinang',
-            'HeaderSmall',
-            ['alignment' => Jc::CENTER]
+        $textRun->addText('PEMERINTAH KABUPATEN KAMPAR', 'HeaderBig');
+        $textRun->addTextBreak();
+        $textRun->addText('DINAS KESEHATAN', ['bold' => true, 'size' => 22]);
+        $textRun->addTextBreak();
+        $textRun->addText('Jl. Dr. A. Rahman Saleh No.01 Bangkinang, Kode Pos 28411', ['size' => 12]);
+        $textRun->addTextBreak();
+        $textRun->addText('Telepon (0762) 20211-20133 Fax (0762) 21047', ['size' => 12]);
+        $textRun->addTextBreak();
+        // teks terakhir tanpa spaceAfter
+        $textRun->addText(
+            'Laman: dinkes.kamparkab.go.id, Pos-el: kampar.dinkes@gmail.com',
+            ['size' => 12],
+            ['spaceAfter' => 0]
         );
-        $textCell->addText('www.karantinaindonesia.go.id', 'HeaderSmall', ['alignment' => Jc::CENTER]);
-        $textCell->addText('pdsi@karantinaindonesia.go.id', 'HeaderSmall', ['alignment' => Jc::CENTER]);
 
-        // Garis bawah
-        $section->addText('', [], [
-            'borderBottomSize'  => 12,
+        // Garis bawah langsung menempel
+        $section->addText(' ', [], [
+            'borderBottomSize'  => 5,
             'borderBottomColor' => '000000',
+            'spaceBefore'       => 0,
             'spaceAfter'        => 0,
         ]);
     }

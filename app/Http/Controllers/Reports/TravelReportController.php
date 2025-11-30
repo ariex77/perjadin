@@ -34,16 +34,15 @@ class TravelReportController extends Controller
             }
 
             TravelReport::create([
-                'title' => $report->title,
-                'report_id' => $report->id,
-                'title' => $validated['title'],
-                'background' => $validated['background'],
-                'purpose_and_objectives' => $validated['purpose_and_objectives'],
-                'scope' => $validated['scope'],
-                'legal_basis' => $validated['legal_basis'],
-                'activities_conducted' => $validated['activities_conducted'],
-                'achievements' => $validated['achievements'],
-                'conclusions' => $validated['conclusions'],
+                'report_id'             => $report->id,
+                'title'                 => $validated['title'],
+                'background'            => $validated['background'],
+                'purpose_and_objectives'=> $validated['purpose_and_objectives'],
+                'scope'                 => $validated['scope'],
+                'legal_basis'           => $validated['legal_basis'],
+                'activities_conducted'  => $validated['activities_conducted'],
+                'achievements'          => $validated['achievements'],
+                'conclusions'           => $validated['conclusions'],
             ]);
 
             return redirect()->back()

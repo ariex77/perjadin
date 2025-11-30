@@ -55,7 +55,7 @@ export const createColumns = (meta: PaginationMeta): ColumnDef<WorkUnit>[] => [
     },
     {
         accessorKey: 'head_name',
-        header: 'Ketua TIM',
+        header: 'Kabid/Sekretaris',
         cell: ({ row }) => {
             return <div>{row.original.head_name ?? '-'}</div>;
         },

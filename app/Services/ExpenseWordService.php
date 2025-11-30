@@ -10,6 +10,7 @@ use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\SimpleType\Jc;
 use PhpOffice\PhpWord\SimpleType\TblWidth;
 use App\Services\IndonesianNumberFormatter;
+use Dompdf\Dompdf;
 
 class ExpenseWordService
 {
@@ -21,13 +22,25 @@ class ExpenseWordService
         'marginLeft'   => 720,
     ];
 
+    private function generatePdfFromHtml(string $htmlContent): string
+    {
+    $dompdf = new Dompdf();
+        $dompdf->loadHtml($htmlContent);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $pdfPath = tempnam(sys_get_temp_dir(), 'expense_report_pdf_') . '.pdf';
+        file_put_contents($pdfPath, $dompdf->output());
+
+        return $pdfPath;
+    }
     public function generate(Report $report): string
     {
         $phpWord = new PhpWord();
 
         // Doc props
         $properties = $phpWord->getDocInfo();
-        $properties->setCreator('E-Perjadin System');
+        $properties->setCreator('Perjadin System');
         $properties->setTitle('Rincian Biaya Perjalanan Dinas');
         $properties->setSubject('Laporan Biaya Perjalanan Dinas');
 
@@ -174,7 +187,7 @@ class ExpenseWordService
         $leftBlock->addText('(' . $terbilang . ')');
 
         $rightBlock = $table->addCell($colAmt + $colNote, ['gridSpan' => 2]);
-        $rightBlock->addText('Jakarta, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont');
+        $rightBlock->addText('Bangkinang, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont');
         $rightBlock->addText('Telah menerima jumlah uang sebesar : Rp.' . number_format($total, 0, ',', '.') . ',-');
         $rightBlock->addText('(' . $terbilang . ')');
 
@@ -403,8 +416,8 @@ class ExpenseWordService
         // Row A3: nama + NIP
         $tbl->addRow();
         $n1 = $tbl->addCell(4500);
-        $n1->addText('Budhi Hari Santoso', ['bold' => true, 'underline' => 'single'], $pCenter);
-        $n1->addText('NIP. 197101072000031001', 'normalFont', $pCenter);
+        $n1->addText('HADRE ADI PUTRA, AMKG.SKM', ['bold' => true, 'underline' => 'single'], $pCenter);
+        $n1->addText('NIP. 198705112009021001', 'normalFont', $pCenter);
 
         $n2 = $tbl->addCell(4500);
         $n2->addText(($report->user->name ?? '-'), ['bold' => true, 'underline' => 'single'], $pCenter);
@@ -427,7 +440,7 @@ class ExpenseWordService
 
         // ——— Blok PERHITUNGAN SPD RAMPUNG ———
         $section->addTextBreak(1);
-        $section->addText('PERHITUNGAN SPD RAMPUNG', 'headerFont', ['spaceAfter' => 60]);
+        $section->addText('PERHITUNGAN SPPD RAMPUNG', 'headerFont', ['spaceAfter' => 60]);
 
         // tabel kecil 2 kolom (label : nilai) biar rapi
         $spd = $section->addTable([
@@ -493,7 +506,7 @@ class ExpenseWordService
 
         $userName = $report->user?->name ?: '-';
         $nip      = $report->user->nip ?? '-';
-        $jabatan  = $report->user?->workUnit?->name ? ('Kepala ' . $report->user->workUnit->name) : '-';
+        $jabatan  = $report->user?->workUnit?->name ? ('ASN ' . $report->user->workUnit->name) : '-';
 
         // Info table TANPA BORDER + full width
         $infoTable = $section->addTable([
@@ -521,7 +534,7 @@ class ExpenseWordService
         $section->addTextBreak(1);
 
         $section->addText(
-            'Berdasarkan Surat Perjalanan Dinas (SPD) Nomor ' . ($report->travel_order_number ?? '-') . ' tanggal ' . Carbon::parse($report->departure_date ?? now())->format('d F Y') . ' dengan ini kami menyampaikan dengan sesungguhnya bahwa:',
+            'Berdasarkan Surat Perjalanan Dinas (SPPD) Nomor ' . ($report->travel_order_number ?? '-') . ' tanggal ' . Carbon::parse($report->departure_date ?? now())->format('d F Y') . ' dengan ini kami menyampaikan dengan sesungguhnya bahwa:',
             [],
             ['spaceAfter' => 60]
         );
@@ -600,8 +613,8 @@ class ExpenseWordService
         $this->addSignature($left, ['Mengetahui/Menyetujui', 'Pejabat Pembuat Komitmen'], $ppkName, $ppkNip);
 
         $right = $sigTable->addCell(4500);
-        $right->addText('Jakarta, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont', ['alignment' => Jc::CENTER]);
-        $this->addSignature($right, ['Pelaksana SPD'], $userName, $nip);
+        $right->addText('Bangkinang, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont', ['alignment' => Jc::CENTER]);
+        $this->addSignature($right, ['Pelaksana SPPD'], $userName, $nip);
     }
 
     /** Blok tanda tangan standar */
@@ -645,10 +658,10 @@ class ExpenseWordService
 
         // Kiri
         $leftCell = $meta->addCell(6000, $noBorderCellStyle);
-        $leftCell->addText('BADAN KARANTINA INDONESIA', ['bold' => true]);
-        $leftCell->addText('PUSAT DATA DAN SISTEM INFORMASI', ['bold' => true]);
-        $leftCell->addText('JL. MH Thamrin No. 8');
-        $leftCell->addText('JAKARTA PUSAT');
+        $leftCell->addText('PEMERINTAH KABUPATEN KAMPAR', ['bold' => true]);
+        $leftCell->addText('DINAS KESEHATAN', ['bold' => true]);
+        $leftCell->addText('Jl. Dr. A. Rahman Saleh No.01');
+        $leftCell->addText('Bangkinang');
 
         // Kanan
         $metaRightCell = $meta->addCell(3000, $noBorderCellStyle);
@@ -709,7 +722,7 @@ class ExpenseWordService
         $table->addRow();
         $table->addCell(3000)->addText('Sudah terima dari');
         $table->addCell(300)->addText(':');
-        $table->addCell(5700)->addText('Pejabat Pembuat Komitmen Pusat Data dan Sistem Informasi');
+        $table->addCell(5700)->addText('Pejabat Pembuat Komitmen ');
         $table->addRow();
         $table->addCell(3000)->addText('Uang sebesar');
         $table->addCell(300)->addText(':');
@@ -725,7 +738,7 @@ class ExpenseWordService
         $table->addRow();
         $table->addCell(3000)->addText('Surat Perintah Perjalanan Dinas dari');
         $table->addCell(300)->addText(':');
-        $table->addCell(5700)->addText('Pusat Data dan Sistem Informasi');
+        $table->addCell(5700)->addText('Dinas Kesehatan');
         $table->addRow();
         $table->addCell(3000)->addText('Tanggal');
         $table->addCell(300)->addText(':');
@@ -733,7 +746,7 @@ class ExpenseWordService
         $table->addRow();
         $table->addCell(3000)->addText('Untuk perjalanan dinas dari');
         $table->addCell(300)->addText(':');
-        $table->addCell(5700)->addText(($report->assignment?->origin ?? 'Jakarta') . '    Ke    ' . ($report->destination_city ?? '-'));
+        $table->addCell(5700)->addText(($report->assignment?->origin ?? 'Bangkinang') . '    Ke    ' . ($report->destination_city ?? '-'));
         $table->addRow();
         $table->addCell(3000)->addText('Jumlah');
         $table->addCell(300)->addText(':');
@@ -763,7 +776,7 @@ class ExpenseWordService
         $c1 = $sig->addCell(3000, $cellStyle);
         $c1->addText('Setuju dibayar', 'normalFont', $pCenter);
         $c1->addText('Pejabat Pembuat Komitmen', 'normalFont', $pCenter);
-        $c1->addText('Pusat Data dan Sistem Informasi KHIT', 'normalFont', $pCenter);
+        $c1->addText('Dinas Kesehatan ', 'normalFont', $pCenter);
         // ruang tanda tangan, tetap 1 baris tabel (line break di dalam sel)
         $c1->addTextBreak(4);
 
@@ -774,7 +787,7 @@ class ExpenseWordService
 
         // Kolom 3: Yang Bepergian + tanggal
         $c3 = $sig->addCell(3000, $cellStyle);
-        $c3->addText('Jakarta, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont', $pCenter);
+        $c3->addText('Bangkinang, ' . Carbon::parse($report->return_date ?? now())->format('d F Y'), 'normalFont', $pCenter);
         $c3->addText('Yang Bepergian', 'normalFont', $pCenter);
         $c3->addTextBreak(4);
 
@@ -785,8 +798,8 @@ class ExpenseWordService
         $verifikatorName = $verifikator?->name ?? '-';
         $verifikatorNip  = $verifikator?->nip ?? '-';
 
-        $bendaharaName = 'Budhi Hari Santoso';
-        $bendaharaNip  = '19710107200003100'; // sesuai contoh Anda
+        $bendaharaName = 'HADRE ADI PUTRA, AMKG.SKM';
+        $bendaharaNip  = '198705112009021001'; // sesuai contoh Anda
 
         $pegawaiName = $report->user->name ?? '-';
         $pegawaiNip  = $report->user->nip  ?? '-';

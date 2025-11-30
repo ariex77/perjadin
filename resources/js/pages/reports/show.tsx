@@ -126,7 +126,7 @@ export default function ReportShow({ report, activeTab: initialActiveTab, auth, 
         // Validasi role & scope
         if (userRoles.includes('verificator')) return true; // PPK
         if (userRoles.includes('leader')) {
-            // Ketua TIM hanya untuk anggota unitnya
+            // Kabid/Sekretaris hanya untuk anggota unitnya
             return reportData?.user?.workUnit?.head?.id === auth.user.id;
         }
         return false;
@@ -378,13 +378,13 @@ export default function ReportShow({ report, activeTab: initialActiveTab, auth, 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <ReviewCard
                                 reviewerType="section_head"
-                                title="Ketua TIM"
-                                waitingMessage="Menunggu review dari Ketua TIM."
+                                title="Kabid/Sekretaris"
+                                waitingMessage="Menunggu review dari Kabid/Sekretaris."
                             />
                             <ReviewCard
                                 reviewerType="commitment_officer"
                                 title="PPK"
-                                waitingMessage="Menunggu review dari Pejabat Pembuat Komitmen (PPK)."
+                                waitingMessage="Menunggu review dari PPK."
                             />
                         </div>
                     </TabsContent>

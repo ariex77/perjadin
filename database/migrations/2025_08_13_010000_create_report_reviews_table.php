@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
             $table->foreignId('reviewer_id')->constrained('users')->onDelete('cascade');
             
-            // Tipe reviewer (Pejabat Pembuat Komitmen / Ketua Seksi)
+            // Tipe reviewer (Pejabat Pembuat Komitmen / Kabid/Sekretaris)
             $table->enum('reviewer_type', array_column(ReviewerType::cases(), 'value'));
             
             // Status review
