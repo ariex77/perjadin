@@ -104,7 +104,7 @@ export function getColumns({ meta, isLeader, isVerifikator }: GetColumnsProps): 
             accessorKey: 'pimpinan_review',
             header: () => (
                 <div className="flex items-center gap-1">
-                    <span>Kabid/Sekretaris</span>
+                    <span>Eselon</span>
                 </div>
             ),
             cell: ({ row }) => {

@@ -100,7 +100,7 @@ export default function EditWorkUnit({ workUnit, leaders = [] }: { workUnit: Wor
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="head_id" className="text-sm font-medium">
-                                Kabid/Sekretaris
+                                Eselon
                             </Label>
                             <Combobox
                                 options={leaders.map((u) => ({ value: String(u.value), label: u.label }))}
